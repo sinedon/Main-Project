@@ -20,7 +20,12 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject); 
+            var health = collision.GetComponent<PlayerHealth>(); 
+            if (health != null)
+            {
+                health.DecreaseHealth(1);
+            }
+            //Destroy(collision.gameObject); 
         }
     }
 }
