@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    
+    [SerializeField] AudioSource coinSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,8 @@ public class Coin : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            Debug.Log("Sound");
+            coinSoundEffect.Play();
             Destroy(this.gameObject);
         }
     }
