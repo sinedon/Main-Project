@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sun : MonoBehaviour
+public class SpikeBall : MonoBehaviour
 {
-    float _dirY;
+    float _dirX;
     [SerializeField] float _moveSpeed = 4f;
     [SerializeField] Rigidbody2D rb;
 
@@ -12,21 +12,21 @@ public class Sun : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _dirY = -1f;
+        _dirX = -1f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x, _dirY * _moveSpeed);
+        rb.velocity = new Vector2(_dirX * _moveSpeed, rb.velocity.y);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Platform")
         {
-            _dirY *= -1f;
+            _dirX *= -1f;
         }
         if (collision.gameObject.tag == "Player")
         {

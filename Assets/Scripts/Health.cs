@@ -13,6 +13,10 @@ public class Health : MonoBehaviour
         _currentHealth = _maxHealth; 
     }
 
+    private void Update()
+    {
+
+    }
     public void DecreaseHealth(int health)
     {
         _currentHealth -= health;

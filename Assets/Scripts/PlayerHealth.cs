@@ -6,6 +6,7 @@ public class PlayerHealth : Health
 {
     [SerializeField] float _damageInvulTime = 2f;
     bool _damageAllowed = true;
+    [SerializeField] EventHandler _eventHandler;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,18 +19,16 @@ public class PlayerHealth : Health
         if (_damageAllowed == true)
         {
             _currentHealth -= health;
-            Debug.Log("Activated");
             StartCoroutine(DamageCounterReset());
         }
         if (_currentHealth <= 0)
         {
-            //Call Game Over
+            _eventHandler.InitiateGameOver();
         }
     }
 
     private IEnumerator DamageCounterReset()
     {
-        Debug.Log("DamageCounterReset");
         _damageAllowed = false;
         yield return new WaitForSeconds(_damageInvulTime);
         _damageAllowed = true;

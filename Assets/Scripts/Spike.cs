@@ -16,16 +16,15 @@ public class Spike : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            var health = collision.GetComponent<PlayerHealth>(); 
+            var health = collision.gameObject.GetComponent<PlayerHealth>(); 
             if (health != null)
             {
                 health.DecreaseHealth(1);
             }
-            //Destroy(collision.gameObject); 
         }
     }
 }

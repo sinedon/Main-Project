@@ -11,7 +11,7 @@ public class EventHandler : MonoBehaviour
     [SerializeField] GameObject _gameOverText;
     [SerializeField] PlayerHealth _health;
     [SerializeField] Player _player; 
-    [SerializeField] Slider _healthBar; 
+    [SerializeField] Slider _healthBar;
 
     public static EventHandler Instance; 
 
@@ -25,9 +25,9 @@ public class EventHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) && _isGameOver)
+        if (Input.GetKeyDown(KeyCode.Return) && _isGameOver)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         _healthBar.value = _health._currentHealth;
 
@@ -36,6 +36,7 @@ public class EventHandler : MonoBehaviour
     {
         _isGameOver = true;
         _gameOverText.SetActive(true);
-        Destroy(_player); 
+        Destroy(_player.gameObject); 
     }
+
 }
