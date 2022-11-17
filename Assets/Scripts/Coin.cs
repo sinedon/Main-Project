@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Coin : MonoBehaviour
 {
     [SerializeField] AudioSource coinSoundEffect;
+    [SerializeField] EventHandler _eventHandler;
     public static int _numCoins = 0;
 
     // Start is called before the first frame update
@@ -29,7 +30,15 @@ public class Coin : MonoBehaviour
             _numCoins--;
             if (_numCoins == 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Debug.Log(SceneManager.GetActiveScene().buildIndex != SceneManager.sceneCountInBuildSettings - 1);
+                if (SceneManager.GetActiveScene().buildIndex != SceneManager.sceneCountInBuildSettings - 1)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                else
+                {
+                    _eventHandler.InitiateGameOver();
+                }
             }
         }
     }
